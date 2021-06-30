@@ -20,6 +20,16 @@ Workshop = new Schema({
     },
     cpassword: {
         type: String
+    },
+	role: {
+        type: String
+    },
+	status: {
+        type: String,
+		default: "pending"
+    },
+	filename: {
+        type: String
     }
 }, {
     collation: 'workshopAcc'

@@ -6,11 +6,27 @@ import axios from "axios";
 class TableRow extends Component {
     constructor(props) {
         super(props);
-        this.delete = this.delete.bind(this);
+        this.approve = this.approve.bind(this);
+		this.decline = this.decline.bind(this);
+		this.download = this.download.bind(this)
     }
-    delete(){
+    approve(){
 
-        axios.get('http://localhost:4000/workshop/delete/'+this.props.obj._id)
+        axios.get('http://localhost:4000/workshop/approve/'+this.props.obj._id)
+            .then(this.setState({redirect: true}))
+            .catch(err => console.log(err))
+        //this.props.history.push('/index');
+    }
+	decline(){
+
+        axios.get('http://localhost:4000/workshop/decline/'+this.props.obj._id)
+            .then(this.setState({redirect: true}))
+            .catch(err => console.log(err))
+        //this.props.history.push('/index');
+    }
+	download(){
+		console.log(this.props.obj.filename);
+        axios.get('http://localhost:4000/workshop/file-download/'+this.props.obj.filename)
             .then(this.setState({redirect: true}))
             .catch(err => console.log(err))
         //this.props.history.push('/index');
@@ -34,17 +50,21 @@ class TableRow extends Component {
                     {this.props.obj.email}
                 </td>
                 <td>
-                    {this.props.obj.password}
+                    {this.props.obj.role}
                 </td>
                 <td>
-                    {this.props.obj.cpassword}
+                    {this.props.obj.status}
                 </td>
-                <td>
-                    <Link to={"/EmpEdit/"+this.props.obj._id} className="btn btn-primary">Edit</Link>
+				<td>
+                    <td><button onClick={this.download} className="btn btn-danger">View</button></td>
 
                 </td>
                 <td>
-                    <td><button onClick={this.delete} className="btn btn-danger">Remove</button></td>
+                    <td><button onClick={this.approve} className="btn btn-danger">Approve</button></td>
+
+                </td>
+                <td>
+                    <td><button onClick={this.decline} className="btn btn-danger">Decline</button></td>
 
                 </td>
             </tr>

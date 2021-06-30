@@ -44,6 +44,7 @@ export default  class Create extends  Component{
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeCPassword = this.onChangeCPassword.bind(this);
+		this.onChangeRole = this.onChangeRole.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -52,7 +53,9 @@ export default  class Create extends  Component{
             phone:'',
             email:'',
             password:'',
-            cpassword:''
+            cpassword:'',
+			role:'',
+			filename:''
         }
     }
     onChangeFirstName(e){
@@ -88,6 +91,11 @@ export default  class Create extends  Component{
             cpassword: e.target.value
         });
     }
+	onChangeRole(e){
+        this.setState( {
+            role: e.target.value
+        });
+    }
     onSubmit(e){
         e.preventDefault();
         this.onFileUpload();
@@ -97,7 +105,9 @@ export default  class Create extends  Component{
             phone : this.state.phone,
             email : this.state.email,
             password : this.state.password,
-            cpassword : this.state.cpassword
+            cpassword : this.state.cpassword,
+			role : this.state.role,
+			filename : this.state.selectedFile.name
         };
 
         if(this.state.password === this.state.cpassword) {
@@ -106,7 +116,7 @@ export default  class Create extends  Component{
                     alert("Successfully Registered")
                     console.log(res.data)
                 });
-            this.props.history.push('/EmpView');
+            //this.props.history.push('/EmpView');
         }
         else{
             alert('Passwords are different...')
@@ -120,7 +130,9 @@ export default  class Create extends  Component{
             phone:'',
             email:'',
             password:'',
-            cpassword:''
+            cpassword:'',
+			role:'',
+			filename:''
 
         })
 
@@ -157,7 +169,11 @@ export default  class Create extends  Component{
                                 <label>Re-Enter Password :</label>
                                 <input type ="text" required = "Please enter address" className="form-control" value={this.state.cpassword} onChange = {this.onChangeCPassword}/>
                             </div>
-                            <br/>
+							<div className="form-group">
+                                <label>User Type :</label>
+                                <input type ="text" required = "Please enter address" className="form-control" value={this.state.role} onChange = {this.onChangeRole}/>
+                            </div>
+							<br/>
                             <div className="form-group">
                                 <label>Upload Reserch Materials :</label>
                                 <input type="file" required = "Please upload file" className="form-control" onChange={this.onFileChange} />

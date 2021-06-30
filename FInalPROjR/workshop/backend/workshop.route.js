@@ -60,7 +60,48 @@ workshopRoutes.route('/update/:id').post(function (req,res){
     });
 });
 
+workshopRoutes.route('/login').post(function (req,res){
+	console.log(req.body.email);
+    Workshop.find({"email": req.body.email,"password":req.body.password}, (err, workshop) => {
+        if (err) {
+            res.send(err);
+        }
+		//else{
+		//console.log(workshop.password);
+		//if(workshop.password == req.body.email)
+			[workshop1] = workshop;
+			res.json(workshop1);
+		//else
+		//	res.send("incorrect password")
+		//}
+    });
+});
+
+workshopRoutes.route('/approve/:id').get(function (req,res){
+    let id = req.params.id;
+	console.log(id);
+	Workshop.findOneAndUpdate({ _id: id}, {$set:{"status":"approved"}}, (err, workshop) => {
+        if (err) {
+            res.send(err);
+        }
+        res.json('Approved');
+    });
+});
+
+workshopRoutes.route('/decline/:id').get(function (req,res){
+    let id = req.params.id;
+	Workshop.findOneAndUpdate({ _id: id}, {$set:{"status":"declined"}}, (err, workshop) => {
+        if (err) {
+            res.send(err);
+        }
+        res.json('Approved');
+    });
+});
+
 workshopRoutes.post('/file-upload',uploadController.upload);
+
+workshopRoutes.get('/file-download/:filename',uploadController.download);
+
 
 workshopRoutes.route('/delete/:id').get(function(req,res){
     Workshop.findByIdAndRemove({_id:req.params.id}, function (err, workshop){
