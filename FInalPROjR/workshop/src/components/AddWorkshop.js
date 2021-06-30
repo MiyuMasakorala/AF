@@ -116,7 +116,7 @@ export default  class Create extends  Component{
                     alert("Successfully Registered")
                     console.log(res.data)
                 });
-            //this.props.history.push('/EmpView');
+            this.props.history.push('/EmpView');
         }
         else{
             alert('Passwords are different...')
@@ -143,7 +143,7 @@ export default  class Create extends  Component{
             <div className='container'>
                 <Router>
                     <div className="container " style={{marginTop:10}}>
-                        <h3 className="text-center">Workshop conductor Registration</h3>
+                        <h3 className="text-center">Employee Registration Form</h3>
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
                                 <label>First Name:</label>
@@ -181,7 +181,7 @@ export default  class Create extends  Component{
                             </div>
                             <br/>
                             <div className="form-group">
-                                <input type = "submit" value = "Register" className="btn-primary"/>
+                                <input type = "submit" value = "Register Employee" className="btn-primary"/>
                             </div>
                         </form>
                     </div>

@@ -5,6 +5,7 @@ import {Button, Form, FormControl, Image, Nav, Navbar, Row} from "react-bootstra
 
 
 import  empadd from './AddWorkshop'
+import  login from './LoginWorkshop'
 import empview from './ViewEmployeePage'
 import conview from './ViewConferencePage'
 
@@ -23,6 +24,7 @@ class HomePage extends Component{
                             <Link to={'/'} className = "nav-link">Home</Link>
                             <Link to={'/EmpAdd'} className = "nav-link">Register workshop conductor</Link>
                             <Link to={'/EmpView'} className = "nav-link">View workshop conductor</Link>
+							<Link to={'/Login'} className = "nav-link">Login workshop conductor</Link>
 
                         </Nav>
                     </Navbar>
@@ -32,6 +34,7 @@ class HomePage extends Component{
                         <Route   path='/EmpAdd' component={empadd}/>
                         <Route   path='/EmpView' component={empview}/>
                         <Route   path='/ConView' component={conview}/>
+						<Route   path='/Login' component={login}/>
                     </Switch>
                 </Router>
 
