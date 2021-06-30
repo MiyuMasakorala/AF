@@ -6,7 +6,6 @@ import { store } from './actions/store';
 import {AppBar, Container, Typography} from '@material-ui/core';
 import ButterToast,{POS_RIGHT,POS_TOP} from "butter-toast";
 
-
 function App() {
   return (
     <Provider store={store}>
